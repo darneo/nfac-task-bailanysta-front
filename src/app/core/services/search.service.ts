@@ -1,18 +1,20 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Profile, User } from '../models';
+import { Profile } from '../models';
+import { environment } from '../../../environment/environment';
 
 @Injectable({ providedIn: 'root' })
 export class SearchService {
-  private apiUrl = 'http://127.0.0.1:8000/api/search/';
+  private baseUrl = environment.apiUrl; // <-- добавлен протокол
 
   constructor(private http: HttpClient) {}
 
   search(query: string): Observable<any> {
-    return this.http.get(`${this.apiUrl}?q=${encodeURIComponent(query)}`);
+    return this.http.get(`${this.baseUrl}/search/?q=${encodeURIComponent(query)}`);
   }
+
   getUsers(): Observable<Profile[]> {
-    return this.http.get<Profile[]>('http://127.0.0.1:8000/api/users/');
+    return this.http.get<Profile[]>(`${this.baseUrl}/users/`);
   }
 }

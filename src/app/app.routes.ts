@@ -9,24 +9,30 @@ import { NotificationsComponent } from './features/notifications/notifications.c
 
 export const routes: Routes = [ 
     {
-        path : 'auth' , component : AuthComponent , title : 'Вход'
-    }, 
-    {
-        path : 'register', component : RegisterComponent , title : 'Регистрация'
+      path: '',
+      redirectTo: 'home',
+      pathMatch: 'full'
     },
     {
-        path : 'home' , component : HomeComponent , title : 'UConnect'
+      path : 'auth', component: AuthComponent, title: 'Вход'
     }, 
     {
-        path : 'posts/:id' , component :PostDetailComponent , title : 'Post page'
+      path : 'register', component: RegisterComponent, title: 'Регистрация'
+    },
+    {
+      path : 'home', component: HomeComponent, title: 'Bailanysta'
+    }, 
+    {
+      path : 'posts/:id', component: PostDetailComponent, title: 'Post page'
     },
     { 
-        path: 'profile/:username', component: ProfileComponent, title : 'Profile page'
+      path: 'profile/:username', component: ProfileComponent, title: 'Profile page'
     },
     {
-        path: 'search', component: SearchComponent, title : 'search'
+      path: 'search', component: SearchComponent, title: 'search'
     },
     {
-        path: 'notifications', component : NotificationsComponent, title : 'Notifications'
-    },
-];
+      path: 'notifications', component: NotificationsComponent, title: 'Notifications'
+    }
+  ];
+  

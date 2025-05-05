@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { GoogleGenerativeAI } from '@google/generative-ai';
+import { environment } from '../../../environment/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GeminiService {
-  private genAI = new GoogleGenerativeAI('AIzaSyDtvHErSzE22wBgd0W2sMCAc-hD-2Ae6QI');
+  private genAI = new GoogleGenerativeAI(environment.geminiAPI);
 
   async generateContent(prompt: string): Promise<string> {
     const model = this.genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
