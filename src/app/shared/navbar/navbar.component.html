@@ -1,0 +1,96 @@
+<ul class="sidebar">
+  <div class="links">
+    <li class="auth-links">
+      <a [routerLink]="['/home']" routerLinkActive="active-link" #homeRla="routerLinkActive">
+        <img [src]="homeRla.isActive ? 'assets/home-active.png' : 'assets/home-passive.png'" alt="Home" width="45" height="42" />
+      </a>
+    </li>
+    
+    <li class="auth-links">
+      <a [routerLink]="['/search']" routerLinkActive="active-link" #searchRla="routerLinkActive">
+        <img [src]="searchRla.isActive ? 'assets/search-logo-open.png' : 'assets/search-logo.png'" alt="search" width="24" height="24" />
+      </a>
+    </li>
+    
+    <li class="auth-links">
+      <ng-container *ngIf="username; else loginRedirect">
+        <button (click)="openModal()" class="icon-button">
+          <img [src]="showModal ? 'assets/plus-active.png' : 'assets/plus-passive.png'" alt="Add Post" width="32" height="32" />
+        </button>
+      </ng-container>
+      <ng-template #loginRedirect>
+        <a [routerLink]="['/auth']" class="icon-button">
+          <img src="assets/plus-passive.png" alt="Add Post" width="32" height="32" />
+        </a>
+      </ng-template>
+    </li>
+
+    <li class="auth-links">
+      <a 
+        [routerLink]="username ? ['/notifications'] : ['/auth']" 
+        [routerLinkActive]="username ? 'active-link' : ''" 
+        #notifRla="routerLinkActive">
+        
+        <img [src]="username && notifRla.isActive ? 'assets/action-active.png' : 'assets/action-passive.png'" 
+             alt="Notifications" width="24" height="24" />
+      </a>  
+    </li>
+    
+    <li class="auth-links" *ngIf="username">
+      <a [routerLink]="['/profile', username]" routerLinkActive="active-link" #profileRla="routerLinkActive">
+        <img [src]="profileRla.isActive ? 'assets/profile-active.png' : 'assets/profile-passive.png'" alt="Profile" width="24" height="24" />
+      </a>
+    </li>
+    
+    <li class="auth-links" *ngIf="!username">
+      <a [routerLink]="['/auth']">login</a>
+    </li>
+    
+  </div>
+</ul>
+
+<!-- Модалка с плавным появлением -->
+<div class="modal-overlay" [class.show]="showModal">
+  <div class="modal-content centered-form">
+    <h2 class="modal-title">Новый пост</h2>
+
+    <textarea [(ngModel)]="postContent" class="modal-textarea" placeholder="О чём вы думаете?"></textarea>
+
+    <div class="modal-buttons">
+      <button class="modal-btn post-btn" (click)="createPost()" routerLink="/home">Опубликовать</button>
+      <button class="modal-btn cancel-btn" (click)="closeModal()">Отмена</button>
+    </div>
+  </div>
+
+  <!-- Gemini помощник -->
+  <div class="gemini-assistant-container" [class.show]="showModal">
+    <div class="assistant-header">
+      <div class="assistant-icon"></div>
+      <div class="assistant-title">Gemini Assistant</div>
+    </div>
+  
+    <textarea [(ngModel)]="prompt" class="assistant-textarea" placeholder="Спросите что угодно..."></textarea>
+  
+    <button (click)="askGemini()" [disabled]="loading" class="assistant-send-btn">
+      <ng-container *ngIf="loading; else sendText">
+        <span class="spinner"></span> Ждём...
+      </ng-container>
+      <ng-template #sendText>Отправить</ng-template>
+    </button>    
+  
+    <div *ngIf="response" class="assistant-response">
+      <div class="response-label"> Ответ:</div>
+      <div class="response-text">{{  displayedText }}</div>
+      <div *ngIf="!loading">
+      <button (click)="createPostFromGemini()" class="assistant-post-btn">
+        Загрузить в пост
+      </button>
+      </div>
+    </div>
+  </div>  
+</div>
+
+
+  
+
+  

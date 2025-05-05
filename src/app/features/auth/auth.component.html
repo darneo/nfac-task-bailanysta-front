@@ -1,0 +1,21 @@
+<form class="auth-form" (ngSubmit)="login()" [ngClass]="{'show': isVisible, 'hide': !isVisible}">
+  <fieldset>
+    <label>Username</label>
+    <input type="text" [(ngModel)]="authModel.username" name="username" required>
+  </fieldset>
+
+  <fieldset>
+    <label>Password</label>
+    <input type="password" [(ngModel)]="authModel.password" name="password" required>
+  </fieldset>
+
+  <div *ngIf="authError" class="error-message">
+    {{ authError }}
+  </div>
+
+  <button type="submit">Login</button>
+</form>
+<div class="register-wrapper">
+  <span>Нет аккаунта?</span>
+  <a class="register" [routerLink]="['/register']">Зарегистрироваться</a>
+</div>

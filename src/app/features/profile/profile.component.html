@@ -1,0 +1,75 @@
+<div class="profile-container" *ngIf="profile">
+  <div class="profile-header">
+    <h1>{{ profile.user.username }}</h1>
+  </div>
+  <div class="profile-info">
+    <div class="profile-avatar">
+      <img *ngIf="profile.avatar_url" [src]="[profile.avatar_url]" alt="avatar" />
+      <div *ngIf="!profile.avatar_url" class="no-avatar">No avatar</div>
+    </div>
+  
+    <div class="profile-stats">
+      <div class="stat">
+        <strong>{{ profile.followers_count }}</strong>
+        <div>подписчики</div>
+      </div>
+      <div class="stat">
+        <strong>{{ profile.following_count }}</strong>
+        <div>подписки</div>
+      </div>
+      <div class="stat">
+        <strong>{{ posts.length }}</strong>
+        <div>публикации</div>
+      </div>
+    </div>
+  </div>
+  
+  <hr class="divider" />
+  
+  <div class="profile-bio">
+    <p>{{ profile.bio || 'Нет биографии' }}</p>
+  </div>
+  
+  
+
+  <div class="logout-button" *ngIf="isOwner">
+    <button (click)="logout()">Выйти</button>
+  </div>
+
+  <div *ngIf="!isOwner">
+    <button (click)="toggleFollow()">
+      {{ isFollowing ? 'Unfollow' : 'Follow' }}
+    </button>
+  </div>
+
+  <button *ngIf="!editingProfile && isOwner" (click)="startProfileEdit()">Редактировать профиль</button>
+
+  <div *ngIf="editingProfile">
+    <label>Bio:</label>
+    <textarea [(ngModel)]="editedProfile.bio" rows="3" cols="40"></textarea>
+
+    <div class="avatar-upload">
+      <label for="avatar-upload-input" class="avatar-label">Avatar:</label>
+      <input type="file" id="avatar-upload-input" (change)="onAvatarSelected($event)" class="avatar-input" />
+      <div class="avatar-preview">
+        <img *ngIf="avatarPreview" [src]="avatarPreview" alt="Avatar Preview" class="avatar-img" />
+        <span *ngIf="!avatarPreview" class="avatar-placeholder">No image selected</span>
+      </div>
+    </div>
+    
+
+    <div class="edit-actions">
+      <button (click)="saveProfile()">Сохранить</button>
+      <button (click)="cancelProfileEdit()">Отмена</button>
+    </div>
+  </div>
+
+  <div class="profile-posts">
+    <h2>Posts</h2>
+    <div *ngFor="let post of posts" class="post">
+      <p><strong>{{ post.user.username }}</strong> </p>
+      <a [routerLink]="['/posts', post.id]">{{ post.content }}</a>
+      <p class="post-date">{{ post.created_at | date: 'short' }}</p>
+    </div>
+  </div>
+</div>

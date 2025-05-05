@@ -1,0 +1,148 @@
+  .search-page {
+    background-color: #121212;  /* Темный фон страницы */
+    color: #e5e5e5;  /* Светлый цвет текста */
+    min-height: 100vh;
+    padding: 3rem;
+    max-width: 900px;
+    margin: 50px auto;
+    font-family: 'Segoe UI', sans-serif;
+    border-radius: 30px;  /* Меньший радиус для более современного вида */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);  /* Добавлена тень */
+  }
+
+  .search-bar {
+    background-color: #1e1e1e;  /* Темный фон для поиска */
+    border-radius: 30px;
+    padding: 0.8rem 1.5rem;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    border: 1px solid #333;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);  /* Легкая тень */
+  }
+
+  .search-bar .filter-icon {
+    color: #ccc;
+    font-size: 1.4rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .search-bar input {
+    flex: 1;
+    background: none;
+    border: none;
+    outline: none;
+    color: #f5f5f5;  /* Цвет текста в поле ввода */
+    padding: 0 0.8rem;
+    font-size: 1.1rem;
+    border-radius: 25px;
+  }
+
+  .results-section h3 {
+    color: #f0f0f0;  /* Светлый цвет заголовков */
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+  }
+
+  .user-card {
+    display: flex;
+    align-items: center;
+    background-color: #1d1d1d;  /* Темный фон для карточек пользователей */
+    padding: 1rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .user-card:hover {
+    transform: translateY(-5px);  /* Эффект при наведении */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);  /* Тень при наведении */
+  }
+
+  .avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 1.5rem;
+    border: 2px solid #444;  /* Обводка вокруг аватара */
+  }
+
+  .user-info {
+    flex: 1;
+  }
+
+  .username {
+    font-weight: bold;
+    color: #ffffff;  /* Белый текст для имени пользователя */
+  }
+
+  .fullname {
+    color: #bbbbbb;  /* Светло-серый для имени */
+    font-size: 1rem;
+  }
+
+  .followers {
+    font-size: 0.9rem;
+    color: #999;  /* Светлый серый для подписчиков */
+  }
+
+.follow-btn {
+  background-color: white;  /* Белый цвет кнопки по умолчанию */
+  color: black;  /* Черный текст на белой кнопке */
+  padding: 0.6rem 1.2rem;
+  border-radius: 30px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s, transform 0.3s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.follow-btn.following {
+  background-color: rgb(69, 68, 68);  /* Черный фон, когда уже подписан */
+  color: white;  /* Белый текст, когда уже подписан */
+}
+
+.follow-btn:hover {
+  background-color: #e6e6e6;  /* Легкий серый цвет фона при наведении */
+  transform: scale(1.05);  /* Увеличение кнопки при наведении */
+}
+
+.follow-btn.following:hover {
+  background-color: #444;  /* Темный оттенок для черной кнопки при наведении */
+}
+
+
+  .post-card {
+    background-color: #2a2a2a;  /* Темный фон для постов */
+    padding: 1.2rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .post-card:hover {
+    transform: translateY(-5px);  /* Эффект при наведении */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);  /* Тень при наведении */
+  }
+
+  .post-card p {
+    margin: 0;
+    font-size: 1rem;
+    color: #e5e5e5;  /* Светлый текст в постах */
+  }
+
+  .post-card span {
+    font-size: 0.9rem;
+    color: #bbb;  /* Светло-серый цвет для автора поста */
+  }
+
+  .icon {
+    width: 7%;
+    height: 12%;
+    margin-right: 10px;
+    filter: brightness(0) invert(1);  /* Эффект для иконок */
+  }

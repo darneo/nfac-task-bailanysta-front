@@ -1,0 +1,18 @@
+<div class="notifications-page">
+  <div *ngIf="notifications.length > 0" class="notifications-list-container">
+    <ul class="notifications-list">
+      <li *ngFor="let notif of notifications" class="notification-item">
+        <div class="notification-header">
+          <span class="notification-date">{{ notif.created_at | date:'short' }}</span>
+        </div>
+        <div class="notification-message">
+
+          <p><a [routerLink]="['/profile', notif.sender_username]" class="username">{{ notif.sender_username }}</a>{{ notif.message }}</p>  
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="notifications.length === 0" class="no-notifications">
+    Нет уведомлений
+  </div>
+</div>

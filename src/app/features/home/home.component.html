@@ -1,0 +1,47 @@
+  <div class="search-page">
+    <div class="post-list-container">
+      <ul *ngIf="loaded" class="post-list">
+        <li *ngFor="let post of posts" class="post-card">
+          <div class="post-header">
+            <a [routerLink]="['/profile', post.user.username]" class="username">{{ post.user.username }}</a>
+            <span class="post-date">{{ post.created_at | date: 'short' }}</span>
+          </div>
+          <div class="post-content">
+            <a [routerLink]="['/posts', post.id]">
+              <p>{{ post.content }}</p>
+            </a>
+          </div>
+          <div class="post-footer">
+            <button class="icon-btn" (click)="toggleLike(post)">
+              <img 
+                [src]="post.is_liked ? 'assets/action-active.png' : 'assets/action-passive.png'" 
+                alt="Like" 
+                class="icon-img" 
+              />
+            </button>
+
+            <button class="icon-btn" (click)="toggleCommentModal(post.id)">
+              <img 
+                src="assets/comment-passive.png"
+                alt="Comment" 
+                class="icon-img" 
+              />
+            </button>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="modal-backdrop" *ngIf="showCommentModal">
+    <div class="modal-content animate-modal" [@fadeInOut]>
+      <div class="modal-header">
+        <strong>{{ currentPost?.user.username }}</strong>
+      </div>
+      <textarea [(ngModel)]="commentContent" placeholder="Напишите комментарий..." rows="3"></textarea>
+      <div class="modal-actions">
+        <button (click)="submitComment()">Отправить</button>
+        <button (click)="closeCommentModal()">Отмена</button>
+      </div>
+    </div>
+  </div>
+

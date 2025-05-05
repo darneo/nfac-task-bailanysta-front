@@ -1,0 +1,68 @@
+<div class="search-page">
+  <div *ngIf="post && !loading" class="post-card">
+    <div class="post-header">
+      <a [routerLink]="['/profile', post.user.username]">
+        <span class="username">{{ post.user.username }}</span>
+      </a>
+      <span class="post-date">{{ post.created_at | date:'short' }}</span>
+    </div>
+
+
+    <div *ngIf="!editingPost" class="post-content">
+      <p>{{ post.content }}</p>
+    </div>
+
+    <div *ngIf="isPostAuthor() && !editingPost" class="post-actions">
+      <button class="action-btn" (click)="startEditingPost()">Редактировать</button>
+    </div>
+  </div>
+
+  <ul class="comments-list">
+    <li *ngFor="let comment of comments" class="comment-item">
+      <div class="comment-header">
+        <a [routerLink]="['/profile', comment.user.username]">
+          <span class="comment-username">{{ comment.user.username }}</span>
+        </a>
+        <span class="comment-date">{{ comment.created_at | date:'short' }}</span>
+      </div>
+      <div class="comment-content">
+        <p>{{ comment.content }}</p>
+      </div>
+      <div class="comment-actions">
+        <button
+          *ngIf="comment.user.username === currentUsername || post.user.username === currentUsername"
+          class="action-btn danger"
+          (click)="deleteComment(comment.id)"
+        >🗑️</button>
+      </div>
+    </li>
+  </ul>
+
+  <div class="comment-form">
+    <textarea
+      [(ngModel)]="commentContent"
+      placeholder="Напишите комментарий..."
+      rows="3"
+      draggable="false"
+      (dragover)="preventDrag($event)"
+      (drop)="preventDrag($event)"
+    ></textarea>
+    <button
+      class="action-btn"
+      (click)="submitComment()"
+      [disabled]="!commentContent.trim()"
+    >Отправить</button>
+  </div>
+</div>
+
+<div class="modal-overlay" *ngIf="editingPost" (click)="cancelEditingPost()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <h3>Редактировать пост</h3>
+    <textarea [(ngModel)]="editedPostContent" rows="5"></textarea>
+    <div class="modal-actions">
+      <button class="action-btn" (click)="saveEditedPost()">Сохранить</button>
+      <button class="action-btn danger" (click)="deletePost()">Удалить</button>
+      <button class="action-btn" (click)="cancelEditingPost()">Отмена</button>
+    </div>
+  </div>
+</div>

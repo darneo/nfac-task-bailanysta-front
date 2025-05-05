@@ -1,0 +1,27 @@
+<form class="auth-form" (ngSubmit)="register(registerForm)" #registerForm="ngForm" [ngClass]="{'show': isFormVisible, 'fade-out': isFormFadingOut}">
+  <fieldset>
+    <label for="username">Username</label>
+    <input type="text" id="username" name="username" [(ngModel)]="username" required>
+  </fieldset>
+
+  <fieldset>
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" [(ngModel)]="email" required>
+  </fieldset>
+
+  <fieldset>
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" [(ngModel)]="password" required>
+  </fieldset>
+
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+
+  <button type="submit">Зарегистрироваться</button>
+</form>
+
+<div class="register-wrapper">
+  Уже есть аккаунт?
+  <a class="register" routerLink="/auth">Войти</a>
+</div>

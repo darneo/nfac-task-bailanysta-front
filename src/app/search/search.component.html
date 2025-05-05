@@ -1,0 +1,39 @@
+<div class="search-page">
+  <div class="search-bar">
+    <img src="assets/search-logo.png" alt="search" class="icon" />
+    <input [(ngModel)]="query" (ngModelChange)="onSearch()" type="text" placeholder="Поиск пользователей или постов..."/>
+  </div>
+
+  <div class="results-box" *ngIf="results">
+    <div class="results-section users" *ngIf="results.users?.length">
+      <h3>Рекомендуемые пользователи</h3>
+      <div class="user-card" *ngFor="let user of results.users">
+        <img [src]="user.avatar_url ? user.avatar_url : 'assets/profile-close.png'" alt="avatar" class="avatar"/>
+        <div class="user-info">
+          <div class="username">{{ user.user.username }}</div>
+          <div class="fullname">{{ user.user.fullName }}</div>
+          <div class="followers">{{ user.followers_count }} подписчиков</div>
+        </div>
+        <button 
+            class="follow-btn" 
+            [class.following]="user.isFollowing" 
+            (click)="toggleFollow(user)">
+            {{ user.isFollowing ? 'Отписаться' : 'Подписаться' }}
+        </button>
+
+      </div>
+    </div>
+
+    <div class="results-section posts" *ngIf="results.posts?.length">
+      <h3>Посты</h3>
+      <ul>
+        <li *ngFor="let post of results.posts">
+          <div class="post-card">
+            <p>{{ post.content }}</p>
+            <span>— {{ post.user.username }}</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
