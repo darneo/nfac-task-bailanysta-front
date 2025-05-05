@@ -6,7 +6,7 @@ import { environment } from '../../../environment/environment';
 
 @Injectable({ providedIn: 'root' })
 export class SearchService {
-  private baseUrl = environment.apiUrl; // <-- добавлен протокол
+  private baseUrl = environment.apiUrl; 
 
   constructor(private http: HttpClient) {}
 

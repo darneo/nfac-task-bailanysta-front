@@ -45,8 +45,7 @@ export class RegisterComponent {
       email: this.email,
       password: this.password
     };
-
-    this.http.post<any>('http://127.0.0.1:8000/api/auth/register/', body).subscribe({
+    this.http.post<any>('https://nfac-task-bailanysta-back-production.up.railway.app/api/auth/register/', body).subscribe({
       next: (res) => {
         localStorage.setItem('access', res.access);
         localStorage.setItem('refresh', res.refresh);
