@@ -1,59 +1,61 @@
-# FrontendSide
+# Bailanysta — социальная сеть в стиле Threads
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.8.
+##  Краткое описание
+Bailanysta — это минималистичная социальная платформа, вдохновлённая Threads. Пользователи могут публиковать посты, комментировать, ставить лайки, подписываться друг на друга и редактировать свои профили.
 
-## Development server
+## ⚙️ Установка и запуск
 
-To start a local development server, run:
-
+### Backend (Django)
 ```bash
+git clone https://github.com/ваш-репозиторий.git
+cd backend
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py runserver
+Frontend (Angular)
+bash
+Копировать
+Редактировать
+cd frontend
+npm install
 ng serve
-```
+Проектирование и разработка
+Спроектированы модели User, Post, Comment, Profile, Follow.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Backend написан на Django с Django REST Framework.
 
-## Code scaffolding
+Frontend построен с Angular (стандартный Angular CLI).
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Использована JWT-аутентификация с Access/Refresh токенами.
 
-```bash
-ng generate component component-name
-```
+Уникальные подходы
+Система подписок и подписчиков с возможностью следить за обновлениями пользователей.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Редактируемый профиль с аватаром.
 
-```bash
-ng generate --help
-```
+Поддержка изображений в постах.
 
-## Building
+Интеграция AI-ассистента (опционально).
 
-To build the project run:
+Компромиссы
+Ограниченный дизайн из-за фокуса на функциональность.
 
-```bash
-ng build
-```
+Использование localStorage вместо полноценного хранилища с сессиями.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Обновление токенов вручную, а не через интерсептор.
 
-## Running unit tests
+Известные проблемы
+Иногда требуется вручную обновить страницу после логина/регистрации.
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+Нет превью при загрузке изображений.
 
-```bash
-ng test
-```
+Отсутствует пагинация постов (опционально реализуемо).
 
-## Running end-to-end tests
+Почему такой стек
+Django + DRF: быстрое создание API с встроенной аутентификацией.
 
-For end-to-end (e2e) testing, run:
+Angular: мощный фреймворк с типизацией и CLI-инструментами.
 
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+JWT: современный и лёгкий способ аутентификации.
