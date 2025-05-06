@@ -3,7 +3,7 @@
 ##  Краткое описание
 Bailanysta — это минималистичная социальная платформа, вдохновлённая Threads. Пользователи могут публиковать посты, комментировать, ставить лайки, подписываться друг на друга и редактировать свои профили.
 
-## ⚙️ Установка и запуск
+## ⚙ Установка и запуск
 
 ### Backend (Django)
 ```bash
@@ -14,13 +14,16 @@ source venv/bin/activate
 pip install -r requirements.txt
 python manage.py migrate
 python manage.py runserver
+
 Frontend (Angular)
-bash
+```
 Копировать
 Редактировать
+```bash
 cd frontend
 npm install
 ng serve
+```
 Проектирование и разработка
 Спроектированы модели User, Post, Comment, Profile, Follow.
 
